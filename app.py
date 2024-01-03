@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, send_file
 from driver import getMessengerScreenshot
 app = Flask(__name__)
 
@@ -6,5 +6,5 @@ app = Flask(__name__)
 def index():
   name = request.args['name']
   print("name: " + name)
-  getMessengerScreenshot(name)
-  return 'Took screenshot!'
+  filename = getMessengerScreenshot(name)
+  return send_file(filename, mimetype='image/png')

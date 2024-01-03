@@ -37,7 +37,9 @@ def getMessengerScreenshot(name):
     width = emoji_pos[0] - active_pos[0] + 140
     height = emoji_pos[1] - active_pos[1] + 75
     time.sleep(0.1)
-    pyautogui.screenshot("./screen-" + name.strip() + ".png", region=(top_x, top_y, width, height))
+    filename = "./screen-" + name.strip() + ".png"
+    pyautogui.screenshot(filename, region=(top_x, top_y, width, height))
+    return filename
 
 def clickIfSafe(img_path):
     pos = imagesearch(img_path)

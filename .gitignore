@@ -1,2 +1,5 @@
 .env
-screen-*
+screen*
+received*
+
+__pycache__
