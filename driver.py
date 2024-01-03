@@ -9,12 +9,20 @@ with open(".env", "r") as env:
     PASS = env.readline().split("=")[1]
 
 def main():
+    login()
+    name = input("Enter name to search: ")
+    getMessengerScreenshot(name)
+    
+
+def login():
     # clickIfSafe("./fb-email-input.png")
     # pyautogui.typewrite(EMAIL)
     # clickIfSafe("./fb-password-input.png")
     # pyautogui.typewrite(PASS)
     # clickIfSafe("./fb-login-btn.png")
-    name = input("Enter name to search: ")
+    pass
+
+def getMessengerScreenshot(name):
     clickIfSafe("./mes-search-bar.png")
     pyautogui.typewrite(name)
     x, y = pyautogui.position()
@@ -28,8 +36,8 @@ def main():
     top_y = active_pos[1] - 30
     width = emoji_pos[0] - active_pos[0] + 140
     height = emoji_pos[1] - active_pos[1] + 75
+    time.sleep(0.1)
     pyautogui.screenshot("./screen-" + name.strip() + ".png", region=(top_x, top_y, width, height))
-
 
 def clickIfSafe(img_path):
     pos = imagesearch(img_path)
@@ -40,4 +48,5 @@ def clickIfSafe(img_path):
     else:
         raise RuntimeError("Image " + str(img_path) + " not found")
 
-main()
+if __name__ == "__main__":
+    main()
