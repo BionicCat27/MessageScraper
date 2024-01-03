@@ -23,21 +23,21 @@ def login():
     pass
 
 def getMessengerScreenshot(name):
-    clickIfSafe("./mes-search-bar.png")
+    clickIfSafe("resources/mes-search-bar.png")
     pyautogui.typewrite(name)
     x, y = pyautogui.position()
     time.sleep(0.1)
     pyautogui.click(x, y+100)
     time.sleep(0.1)
-    active_pos = imagesearch("mes-active.png")
-    emoji_pos = imagesearch("mes-emoji.png")
+    active_pos = imagesearch("resources/mes-active.png")
+    emoji_pos = imagesearch("resources/mes-emoji.png")
     print("Capture: " + str(active_pos) + " " + str(emoji_pos))
     top_x = active_pos[0] - 50
     top_y = active_pos[1] - 30
-    width = emoji_pos[0] - active_pos[0] + 140
+    width = emoji_pos[0] - active_pos[0] + 130
     height = emoji_pos[1] - active_pos[1] + 75
     time.sleep(0.1)
-    filename = "./screen-" + name.strip() + ".png"
+    filename = "screen-" + name.strip() + ".png"
     pyautogui.screenshot(filename, region=(top_x, top_y, width, height))
     return filename
 
